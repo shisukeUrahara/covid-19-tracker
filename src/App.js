@@ -2,11 +2,13 @@ import "./App.css";
 import AppLeftContainer from "./AppLeftContainer";
 import AppRightContainer from "./AppRightContainer";
 import { useState, useEffect } from "react";
+import { getSortedData } from "./utils";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("worldwide");
   const [selectedCountryInfo, setSelectedCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     const init = async () => {
@@ -21,7 +23,6 @@ function App() {
     await fetch("https://disease.sh/v3/covid-19/all")
       .then((response) => response.json())
       .then((data) => {
-        console.log("**@ selectedCountry data is , ", data);
         setSelectedCountryInfo(data);
       })
       .catch((err) => {
@@ -38,7 +39,6 @@ function App() {
         return result.json();
       })
       .then((data) => {
-        console.log("**@ the data is , ", data);
         const countries = data.map((country) => {
           return {
             name: country.country,
@@ -46,7 +46,10 @@ function App() {
           };
         });
 
-        console.log("**@ processed countries are , ", countries);
+        const sortedData = getSortedData(data);
+        console.log("**@ sortedData is , ", sortedData);
+
+        setTableData(sortedData);
         setCountries(countries);
       })
       .catch((err) => {
@@ -61,7 +64,6 @@ function App() {
     e.preventDefault();
 
     const selectedCountryCode = e.target.value;
-    console.log("**@ selectedCountry code is , ", selectedCountryCode);
 
     setSelectedCountry(selectedCountryCode);
     const url =
@@ -72,8 +74,6 @@ function App() {
     await fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log("**@ selectedCountry code is , ", selectedCountryCode);
-        console.log("**@ selectedCountry data is , ", data);
         setSelectedCountryInfo(data);
       })
       .catch((err) => {
@@ -93,7 +93,7 @@ function App() {
         selectedCountryInfo={selectedCountryInfo}
         setSelectedCountryData={setSelectedCountryData}
       />
-      <AppRightContainer />
+      <AppRightContainer tableData={tableData} />
     </div>
   );
 }
