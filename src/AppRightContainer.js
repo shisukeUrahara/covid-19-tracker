@@ -1,6 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@material-ui/core";
 import Table from "./Table";
+import LineGraph from "./LineGraph";
 
 function AppRightContainer({ tableData }) {
   return (
@@ -11,6 +12,7 @@ function AppRightContainer({ tableData }) {
         {/* TABLE */}
         <Table countries={tableData} />
         {/* GRAPH */}
+        <LineGraph />
       </CardContent>
     </Card>
   );
