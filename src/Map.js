@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import { Map as LeafletMap, TileLayer } from "react-leaflet";
-// import { showDataOnMap } from "./util";
+import { showDataOnMap } from "./utils";
 
-function Map({ center, zoom }) {
+function Map({ center, zoom, countries, casesType }) {
   useEffect(() => {}, [center[0], zoom]);
-  console.log("**@ map component , center is , ", center, " zoom is , ", zoom);
   return (
     <div className="map">
       <LeafletMap center={center} zoom={zoom}>
@@ -12,7 +11,7 @@ function Map({ center, zoom }) {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         />
-        {/* {showDataOnMap(countries, casesType)} */}
+        {showDataOnMap(countries, casesType)}
       </LeafletMap>
     </div>
   );

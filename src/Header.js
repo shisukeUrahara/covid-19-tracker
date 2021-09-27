@@ -4,7 +4,7 @@ function Header({ countries, selectedCountry, setSelectedCountryData }) {
   return (
     <div className="app__header">
       <h1>COVID-19 TRACKER</h1>
-      <FormControl className="app_dropdown">
+      <FormControl className="app__dropdown">
         <Select
           variant="outlined"
           value={selectedCountry}

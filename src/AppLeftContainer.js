@@ -11,8 +11,10 @@ function AppLeftContainer({
   setSelectedCountryData,
   mapCenter,
   mapZoom,
+  mapCountries,
+  casesType,
+  setCasesType,
 }) {
-  console.log("**@ app left container ,  mapcenter is , ", mapCenter);
   return (
     <div className="app__left">
       {/* header */}
@@ -23,10 +25,19 @@ function AppLeftContainer({
         setSelectedCountryData={setSelectedCountryData}
       />
 
-      <Stats selectedCountryInfo={selectedCountryInfo}></Stats>
+      <Stats
+        selectedCountryInfo={selectedCountryInfo}
+        casesType={casesType}
+        setCasesType={setCasesType}
+      ></Stats>
 
       {/* MAP */}
-      <Map center={mapCenter} zoom={mapZoom} />
+      <Map
+        center={mapCenter}
+        zoom={mapZoom}
+        countries={mapCountries}
+        casesType={casesType}
+      />
     </div>
   );
 }

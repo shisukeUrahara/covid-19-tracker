@@ -12,6 +12,8 @@ function App() {
   const [tableData, setTableData] = useState([]);
   const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
   const [mapZoom, setMapZoom] = useState(3);
+  const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
 
   useEffect(() => {
     const init = async () => {
@@ -52,6 +54,7 @@ function App() {
         const sortedData = getSortedData(data);
 
         setTableData(sortedData);
+        setMapCountries(data);
         setCountries(countries);
       })
       .catch((err) => {
@@ -101,8 +104,11 @@ function App() {
         setSelectedCountryData={setSelectedCountryData}
         mapCenter={mapCenter}
         mapZoom={mapZoom}
+        mapCountries={mapCountries}
+        casesType={casesType}
+        setCasesType={setCasesType}
       />
-      <AppRightContainer tableData={tableData} />
+      <AppRightContainer tableData={tableData} casesType={casesType} />
     </div>
   );
 }
