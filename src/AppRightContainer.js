@@ -12,6 +12,7 @@ function AppRightContainer({ tableData }) {
         {/* TABLE */}
         <Table countries={tableData} />
         {/* GRAPH */}
+        <h2>Worldwide new cases</h2>
         <LineGraph />
       </CardContent>
     </Card>

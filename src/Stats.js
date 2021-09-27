@@ -2,10 +2,6 @@ import React from "react";
 import InfoBox from "./InfoBox";
 
 function Stats({ selectedCountryInfo }) {
-  console.log(
-    "**@ inside Stats , selectedCountryINfo is , ",
-    selectedCountryInfo
-  );
   return (
     <div className="app_stats">
       <InfoBox

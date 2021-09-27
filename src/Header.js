@@ -8,7 +8,7 @@ function Header({ countries, selectedCountry, setSelectedCountryData }) {
         <Select
           variant="outlined"
           value={selectedCountry}
-          onChange={(e) => setSelectedCountryData(e)}
+          onChange={setSelectedCountryData}
         >
           <MenuItem value="worldwide">worldwide</MenuItem>
           {countries &&

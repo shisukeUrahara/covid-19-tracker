@@ -1,6 +1,7 @@
 import Header from "./Header";
 import Stats from "./Stats";
 import Map from "./Map";
+import { useState, useEffect } from "react";
 import "./App.css";
 
 function AppLeftContainer({
@@ -8,7 +9,10 @@ function AppLeftContainer({
   selectedCountry,
   selectedCountryInfo,
   setSelectedCountryData,
+  mapCenter,
+  mapZoom,
 }) {
+  console.log("**@ app left container ,  mapcenter is , ", mapCenter);
   return (
     <div className="app__left">
       {/* header */}
@@ -22,7 +26,7 @@ function AppLeftContainer({
       <Stats selectedCountryInfo={selectedCountryInfo}></Stats>
 
       {/* MAP */}
-      <Map />
+      <Map center={mapCenter} zoom={mapZoom} />
     </div>
   );
 }

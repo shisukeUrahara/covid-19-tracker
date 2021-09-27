@@ -3,12 +3,15 @@ import AppLeftContainer from "./AppLeftContainer";
 import AppRightContainer from "./AppRightContainer";
 import { useState, useEffect } from "react";
 import { getSortedData } from "./utils";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [selectedCountry, setSelectedCountry] = useState("worldwide");
   const [selectedCountryInfo, setSelectedCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
+  const [mapCenter, setMapCenter] = useState({ lat: 34.80746, lng: -40.4796 });
+  const [mapZoom, setMapZoom] = useState(3);
 
   useEffect(() => {
     const init = async () => {
@@ -47,7 +50,6 @@ function App() {
         });
 
         const sortedData = getSortedData(data);
-        console.log("**@ sortedData is , ", sortedData);
 
         setTableData(sortedData);
         setCountries(countries);
@@ -75,6 +77,11 @@ function App() {
       .then((response) => response.json())
       .then((data) => {
         setSelectedCountryInfo(data);
+        setSelectedCountry(selectedCountryCode);
+
+        setMapCenter({ lat: data.countryInfo.lat, lng: data.countryInfo.long });
+
+        setMapZoom(4);
       })
       .catch((err) => {
         console.log(
@@ -92,6 +99,8 @@ function App() {
         selectedCountry={selectedCountry}
         selectedCountryInfo={selectedCountryInfo}
         setSelectedCountryData={setSelectedCountryData}
+        mapCenter={mapCenter}
+        mapZoom={mapZoom}
       />
       <AppRightContainer tableData={tableData} />
     </div>
